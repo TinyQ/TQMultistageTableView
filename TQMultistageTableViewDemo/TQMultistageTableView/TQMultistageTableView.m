@@ -154,7 +154,7 @@
     {
         if ([self.selectIndexPath compare:indexPath] == NSOrderedSame && self.selectIndexPathIsOpen)
         {
-            if (self.viewForExpand.superview && ![self.viewForExpand.subviews isEqual:cell])
+            if (self.viewForExpand.superview && ![self.viewForExpand.superview isEqual:cell])
             {
                 [self.viewForExpand removeFromSuperview];
             }
