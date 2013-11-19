@@ -17,7 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     TQViewController *viewController = [[TQViewController alloc] init];
-    viewController.title = @"TinyQ";
+    viewController.title = @"TQMultistageTableView";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
     self.window.rootViewController = navigationController;

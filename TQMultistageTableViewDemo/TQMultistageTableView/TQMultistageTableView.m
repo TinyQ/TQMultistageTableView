@@ -29,6 +29,8 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         _tableView = [[UITableView alloc] initWithFrame:frame];
         _tableView.delegate     = self;
         _tableView.dataSource   = self;
+        _tableView.backgroundColor = [UIColor clearColor];
+        
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
         [self addSubview:_tableView];

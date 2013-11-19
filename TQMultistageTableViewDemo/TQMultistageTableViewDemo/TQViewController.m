@@ -18,17 +18,13 @@
 {
     [super viewDidLoad];
     
-//    if(OSVersionIsAtLeastiOS7())
-//    {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-//        self.extendedLayoutIncludesOpaqueBars = NO;
-//        self.modalPresentationCapturesStatusBarAppearance = NO;
-//    }
-
-    self.mTableView = [[TQMultistageTableView alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
+    CGRect rect = [UIScreen mainScreen ].bounds;
+    
+    self.mTableView = [[TQMultistageTableView alloc] initWithFrame:rect];
     self.mTableView.dataSource = self;
     self.mTableView.delegate   = self;
-
+    self.mTableView.backgroundColor = [UIColor clearColor];
+    
     [self.view addSubview:self.mTableView];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mTableView.bounds.size.width, 100)];

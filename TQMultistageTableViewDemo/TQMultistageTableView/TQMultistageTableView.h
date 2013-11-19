@@ -82,9 +82,9 @@ typedef enum
 
 @end
 
-
-
-
+/**
+ *  TQMultistageTableView 数据协议
+ */
 @protocol TQTableViewDataSource <NSObject>
 
 @required
@@ -103,7 +103,9 @@ typedef enum
 @end
 
 
-
+/**
+ *  TQMultistageTableView 委托协议
+ */
 @protocol TQTableViewDelegate <NSObject>
 
 @optional
