@@ -7,20 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58D03043183B5BF9006A5D1D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58D03042183B5BF9006A5D1D /* Images.xcassets */; };
 		58F8D32517D5CF090037C5AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F8D32417D5CF090037C5AE /* UIKit.framework */; };
 		58F8D32717D5CF090037C5AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F8D32617D5CF090037C5AE /* Foundation.framework */; };
 		58F8D32917D5CF090037C5AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F8D32817D5CF090037C5AE /* CoreGraphics.framework */; };
 		58F8D32F17D5CF090037C5AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D32D17D5CF090037C5AE /* InfoPlist.strings */; };
 		58F8D33117D5CF090037C5AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8D33017D5CF090037C5AE /* main.m */; };
 		58F8D33517D5CF090037C5AE /* TQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8D33417D5CF090037C5AE /* TQAppDelegate.m */; };
-		58F8D33717D5CF090037C5AE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D33617D5CF090037C5AE /* Default.png */; };
-		58F8D33917D5CF090037C5AE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D33817D5CF090037C5AE /* Default@2x.png */; };
-		58F8D33B17D5CF090037C5AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D33A17D5CF090037C5AE /* Default-568h@2x.png */; };
 		58F8D33E17D5CF090037C5AE /* TQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8D33D17D5CF090037C5AE /* TQViewController.m */; };
 		58F8D34A17D5CFD20037C5AE /* TQMultistageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8D34917D5CF4F0037C5AE /* TQMultistageTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58D03042183B5BF9006A5D1D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		58F8D32117D5CF090037C5AE /* TQMultistageTableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TQMultistageTableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F8D32417D5CF090037C5AE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		58F8D32617D5CF090037C5AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -31,9 +30,6 @@
 		58F8D33217D5CF090037C5AE /* TQMultistageTableViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TQMultistageTableViewDemo-Prefix.pch"; sourceTree = "<group>"; };
 		58F8D33317D5CF090037C5AE /* TQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQAppDelegate.h; sourceTree = "<group>"; };
 		58F8D33417D5CF090037C5AE /* TQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQAppDelegate.m; sourceTree = "<group>"; };
-		58F8D33617D5CF090037C5AE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		58F8D33817D5CF090037C5AE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		58F8D33A17D5CF090037C5AE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		58F8D33C17D5CF090037C5AE /* TQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQViewController.h; sourceTree = "<group>"; };
 		58F8D33D17D5CF090037C5AE /* TQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQViewController.m; sourceTree = "<group>"; };
 		58F8D34817D5CF4F0037C5AE /* TQMultistageTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQMultistageTableView.h; sourceTree = "<group>"; };
@@ -89,6 +85,7 @@
 				58F8D33417D5CF090037C5AE /* TQAppDelegate.m */,
 				58F8D33C17D5CF090037C5AE /* TQViewController.h */,
 				58F8D33D17D5CF090037C5AE /* TQViewController.m */,
+				58D03042183B5BF9006A5D1D /* Images.xcassets */,
 				58F8D32B17D5CF090037C5AE /* Supporting Files */,
 			);
 			path = TQMultistageTableViewDemo;
@@ -101,9 +98,6 @@
 				58F8D32D17D5CF090037C5AE /* InfoPlist.strings */,
 				58F8D33017D5CF090037C5AE /* main.m */,
 				58F8D33217D5CF090037C5AE /* TQMultistageTableViewDemo-Prefix.pch */,
-				58F8D33617D5CF090037C5AE /* Default.png */,
-				58F8D33817D5CF090037C5AE /* Default@2x.png */,
-				58F8D33A17D5CF090037C5AE /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -170,9 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58F8D32F17D5CF090037C5AE /* InfoPlist.strings in Resources */,
-				58F8D33717D5CF090037C5AE /* Default.png in Resources */,
-				58F8D33917D5CF090037C5AE /* Default@2x.png in Resources */,
-				58F8D33B17D5CF090037C5AE /* Default-568h@2x.png in Resources */,
+				58D03043183B5BF9006A5D1D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +255,8 @@
 		58F8D34517D5CF090037C5AE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TQMultistageTableViewDemo/TQMultistageTableViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "TQMultistageTableViewDemo/TQMultistageTableViewDemo-Info.plist";
@@ -274,6 +268,8 @@
 		58F8D34617D5CF090037C5AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TQMultistageTableViewDemo/TQMultistageTableViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "TQMultistageTableViewDemo/TQMultistageTableViewDemo-Info.plist";
