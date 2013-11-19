@@ -75,6 +75,9 @@ typedef enum
  */
 - (void)sendHeaderTouchActionWithSection:(NSInteger)section;
 
+/**
+ *  重新加载数据
+ */
 - (void)reloadData;
 
 @end

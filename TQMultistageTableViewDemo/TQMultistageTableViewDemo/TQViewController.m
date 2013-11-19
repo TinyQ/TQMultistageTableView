@@ -18,14 +18,14 @@
 {
     [super viewDidLoad];
     
-    if(OSVersionIsAtLeastiOS7())
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }
+//    if(OSVersionIsAtLeastiOS7())
+//    {
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = NO;
+//        self.modalPresentationCapturesStatusBarAppearance = NO;
+//    }
 
-    self.mTableView = [[TQMultistageTableView alloc] initWithFrame:self.view.bounds];
+    self.mTableView = [[TQMultistageTableView alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
     self.mTableView.dataSource = self;
     self.mTableView.delegate   = self;
 
@@ -43,7 +43,7 @@
 
 - (void)addbuttonClick:(id)sender
 {
-    [self.mTableView sendCellTouchActionWithIndexPath:[NSIndexPath indexPathForRow:5 inSection:2]];
+    [self.mTableView sendCellTouchActionWithIndexPath:[NSIndexPath indexPathForRow:6 inSection:2]];
 }
 
 #pragma mark - TQTableViewDataSource
