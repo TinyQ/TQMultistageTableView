@@ -8,97 +8,116 @@
 
 #import <UIKit/UIKit.h>
 
-#ifndef TQ_STRONG
-#if __has_feature(objc_arc)
-#define TQ_STRONG strong
-#else
-#define TQ_STRONG retain
-#endif
-#endif
+typedef enum
+{
+    //最外层
+	TQHeaderLineTouch,
+    //中间层
+	TQCellLineTouch,
+    //代码
+	TQCodeSendTouch,
+} TQLineTouchType;
 
-#ifndef TQ_WEAK
-#if __has_feature(objc_arc_weak)
-#define TQ_WEAK weak
-#elif __has_feature(objc_arc)
-#define TQ_WEAK unsafe_unretained
-#else
-#define TQ_WEAK assign
-#endif
-#endif
+@protocol TQTableViewDataSource , TQTableViewDelegate;
 
-#if __has_feature(objc_arc)
-#define TQ_AUTORELEASE(exp) exp
-#define TQ_RELEASE(exp) exp
-#define TQ_RETAIN(exp) exp
-#else
-#define TQ_AUTORELEASE(exp) [exp autorelease]
-#define TQ_RELEASE(exp) [exp release]
-#define TQ_RETAIN(exp) [exp retain]
-#endif
+@interface TQMultistageTableView : UIView <UITableViewDelegate, UITableViewDataSource>
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
-#define MBLabelAlignmentCenter NSTextAlignmentCenter
-#else
-#define MBLabelAlignmentCenter UITextAlignmentCenter
-#endif
+/**
+ *  数据源相关委托
+ */
+@property (nonatomic,assign) id <TQTableViewDataSource> dataSource;
 
-@class TQMultistageTableView;
-#define DEFULT_HEIGHT_FOR_ROW 50.0f
+/**
+ *  事件回调相关委托
+ */
+@property (nonatomic,assign) id <TQTableViewDelegate>   delegate;
+
+/**
+ *  展开的列表层级索引 Default is [NSIndexPath indexPathForRow:-1 inSection:-1]
+ */
+@property (nonatomic,readonly,strong) NSIndexPath *openedIndexPath;
+
+/**
+ *  主体列表对象
+ */
+@property (nonatomic,readonly,strong) UITableView *tableView;
+
+/**
+ *  展开最内层cell 要显示的View
+ */
+@property (nonatomic,strong) UIView *atomView;
+
+/**
+ *  展开后atomView的位置坐标（相对于展开的 Cell 左下角）Default is CGPointMake(0, 0);
+ */
+@property (nonatomic) CGPoint atomOrigin;
+
+/**
+ *  列表单元添加复用标识
+ *
+ *  @param identifier 复用标识字符串
+ *
+ *  @return 列表单元对象
+ */
+- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+
+/**
+ *  模拟列表Cell点击事件 -1 为关闭
+ *
+ *  @param indexPath cell所在路径
+ */
+- (void)sendCellTouchActionWithIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ *  模拟列表Header点击事件 －1 为关闭
+ *
+ *  @param section header 索引
+ */
+- (void)sendHeaderTouchActionWithSection:(NSInteger)section;
+
+- (void)reloadData;
+
+@end
+
+
+
 
 @protocol TQTableViewDataSource <NSObject>
 
 @required
 
-- (NSInteger)mTableView:(TQMultistageTableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (NSInteger)mTableView:(TQMultistageTableView *)mTableView numberOfRowsInSection:(NSInteger)section;
 
-- (UITableViewCell *)mTableView:(TQMultistageTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)mTableView:(TQMultistageTableView *)mTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
-- (NSInteger)numberOfSectionsInTableView:(TQMultistageTableView *)tableView;
 
-- (UIView *)mTableView:(TQMultistageTableView *)tableView openCellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)numberOfSectionsInTableView:(TQMultistageTableView *)mTableView;              // Default is 1 if not implemented
+
+- (NSString *)mTableView:(TQMultistageTableView *)mTableView titleForHeaderInSection:(NSInteger)section;
+- (NSString *)mTableView:(TQMultistageTableView *)mTableView titleForFooterInSection:(NSInteger)section;
 
 @end
+
+
 
 @protocol TQTableViewDelegate <NSObject>
 
 @optional
 
-- (CGFloat)mTableView:(TQMultistageTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForHeaderInSection:(NSInteger)section;
+- (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForAtomAtIndexPath:(NSIndexPath *)indexPath;
 
-- (CGFloat)mTableView:(TQMultistageTableView *)tableView heightForOpenCellAtIndexPath:(NSIndexPath *)indexPath;
+- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
 
-- (CGFloat)mTableView:(TQMultistageTableView *)tableView heightForHeaderInSection:(NSInteger)section;
+- (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section;
+- (void)mTableView:(TQMultistageTableView *)mTableView willCloseHeaderAtSection:(NSInteger)section;
 
-- (UIView *)mTableView:(TQMultistageTableView *)tableView viewForHeaderInSection:(NSInteger)section;
-//header点击
-- (void)mTableView:(TQMultistageTableView *)tableView didSelectHeaderAtSection:(NSInteger)section;
-//celll点击
-- (void)mTableView:(TQMultistageTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)mTableView:(TQMultistageTableView *)mTableView willOpenRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)mTableView:(TQMultistageTableView *)mTableView willCloseRowAtIndexPath:(NSIndexPath *)indexPath;
 
-//header展开
-- (void)mTableView:(TQMultistageTableView *)tableView willOpenHeaderAtSection:(NSInteger)section;
-//header关闭
-- (void)mTableView:(TQMultistageTableView *)tableView willCloseHeaderAtSection:(NSInteger)section;
-
-//cell展开
-- (void)mTableView:(TQMultistageTableView *)tableView willOpenCellAtIndexPath:(NSIndexPath *)indexPath;
-//cell关闭
-- (void)mTableView:(TQMultistageTableView *)tableView willCloseCellAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface TQMultistageTableView : UIView <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic,TQ_WEAK) id <TQTableViewDataSource> dataSource;
-@property (nonatomic,TQ_WEAK) id <TQTableViewDelegate>   delegate;
-@property (nonatomic,TQ_STRONG) UITableView *tableView;
 
-- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
-- (void)openCellViewWithIndexPath:(NSIndexPath *)indexPath;
-- (void)openOrCloseHeaderWithSection:(int)section;
-- (UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (void)reloadDataWithTableViewCell:(UITableViewCell *)cell;
-- (void)reloadData;
-- (void)updateTableView;
-- (bool)isOpenCellWithIndexPath:(NSIndexPath *)indexPath;
-@end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TQMultistageTableView.h"
 
-@interface TQViewController : UIViewController <TQTableViewDataSource, TQTableViewDelegate>
+@interface TQViewController : UIViewController <TQTableViewDataSource,TQTableViewDelegate>
 
 @property (nonatomic, strong) TQMultistageTableView *mTableView;
 

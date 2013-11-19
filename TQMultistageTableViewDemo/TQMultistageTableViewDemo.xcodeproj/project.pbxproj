@@ -17,7 +17,6 @@
 		58F8D33917D5CF090037C5AE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D33817D5CF090037C5AE /* Default@2x.png */; };
 		58F8D33B17D5CF090037C5AE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D33A17D5CF090037C5AE /* Default-568h@2x.png */; };
 		58F8D33E17D5CF090037C5AE /* TQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8D33D17D5CF090037C5AE /* TQViewController.m */; };
-		58F8D34117D5CF090037C5AE /* TQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58F8D33F17D5CF090037C5AE /* TQViewController.xib */; };
 		58F8D34A17D5CFD20037C5AE /* TQMultistageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8D34917D5CF4F0037C5AE /* TQMultistageTableView.m */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +36,6 @@
 		58F8D33A17D5CF090037C5AE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		58F8D33C17D5CF090037C5AE /* TQViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQViewController.h; sourceTree = "<group>"; };
 		58F8D33D17D5CF090037C5AE /* TQViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQViewController.m; sourceTree = "<group>"; };
-		58F8D34017D5CF090037C5AE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/TQViewController.xib; sourceTree = "<group>"; };
 		58F8D34817D5CF4F0037C5AE /* TQMultistageTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQMultistageTableView.h; sourceTree = "<group>"; };
 		58F8D34917D5CF4F0037C5AE /* TQMultistageTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQMultistageTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,7 +89,6 @@
 				58F8D33417D5CF090037C5AE /* TQAppDelegate.m */,
 				58F8D33C17D5CF090037C5AE /* TQViewController.h */,
 				58F8D33D17D5CF090037C5AE /* TQViewController.m */,
-				58F8D33F17D5CF090037C5AE /* TQViewController.xib */,
 				58F8D32B17D5CF090037C5AE /* Supporting Files */,
 			);
 			path = TQMultistageTableViewDemo;
@@ -176,7 +173,6 @@
 				58F8D33717D5CF090037C5AE /* Default.png in Resources */,
 				58F8D33917D5CF090037C5AE /* Default@2x.png in Resources */,
 				58F8D33B17D5CF090037C5AE /* Default-568h@2x.png in Resources */,
-				58F8D34117D5CF090037C5AE /* TQViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,14 +199,6 @@
 				58F8D32E17D5CF090037C5AE /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		58F8D33F17D5CF090037C5AE /* TQViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				58F8D34017D5CF090037C5AE /* en */,
-			);
-			name = TQViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -241,7 +229,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -265,7 +253,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -313,6 +301,7 @@
 				58F8D34617D5CF090037C5AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

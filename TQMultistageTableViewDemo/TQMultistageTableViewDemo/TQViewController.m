@@ -18,28 +18,45 @@
 {
     [super viewDidLoad];
     
-    self.mTableView = [[TQMultistageTableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.frame.size.height)];
-    self.mTableView.delegate = self;
+    if(OSVersionIsAtLeastiOS7())
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+    }
+
+    self.mTableView = [[TQMultistageTableView alloc] initWithFrame:self.view.bounds];
     self.mTableView.dataSource = self;
+    self.mTableView.delegate   = self;
+
     [self.view addSubview:self.mTableView];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mTableView.bounds.size.width, 100)];
+    view.backgroundColor = [UIColor colorWithRed:187/255.0 green:206/255.0 blue:190/255.0 alpha:1];;
+    
+    self.mTableView.atomView = view;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [button addTarget:self action:@selector(addbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)addbuttonClick:(id)sender
+{
+    [self.mTableView sendCellTouchActionWithIndexPath:[NSIndexPath indexPathForRow:5 inSection:2]];
 }
 
 #pragma mark - TQTableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(TQMultistageTableView *)tableView
+- (NSInteger)mTableView:(TQMultistageTableView *)mTableView numberOfRowsInSection:(NSInteger)section
 {
     return 10;
 }
 
-- (NSInteger)mTableView:(TQMultistageTableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return section + 1;
-}
-
-- (UITableViewCell *)mTableView:(TQMultistageTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)mTableView:(TQMultistageTableView *)mTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"TQMultistageTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [mTableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -52,76 +69,63 @@
     return cell;
 }
 
-- (UIView *)mTableView:(TQMultistageTableView *)tableView openCellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)numberOfSectionsInTableView:(TQMultistageTableView *)mTableView
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 100)];
-    view.backgroundColor = [UIColor colorWithRed:187/255.0 green:206/255.0 blue:190/255.0 alpha:1];;
-    return view;
+    return 10;
 }
 
 #pragma mark - Table view delegate
 
-- (CGFloat)mTableView:(TQMultistageTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100;
+    return 44;
 }
 
-- (CGFloat)mTableView:(TQMultistageTableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50;
-}
-
-- (CGFloat)mTableView:(TQMultistageTableView *)tableView heightForOpenCellAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
-}
-
-- (UIView *)mTableView:(TQMultistageTableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
 {
     UIView * control = [[UIView alloc] init];
     control.backgroundColor = [UIColor whiteColor];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 48, tableView.frame.size.width, 2)];
-    view.backgroundColor = [UIColor blackColor];
     UILabel *label = [[UILabel alloc] init];
     label.text = [NSString stringWithFormat:@"%d",section];
     label.textColor = [UIColor blackColor];
     label.frame = CGRectMake(20, 0, 200, 40);
     [control addSubview:label];
-    [control addSubview:view];
     return control;
 }
-
-- (void)mTableView:(TQMultistageTableView *)tableView didSelectHeaderAtSection:(NSInteger)section
+#pragma mark -
+- (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForAtomAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"headerClick%d",section);
+    return 100;
 }
 
-//celll点击
-- (void)mTableView:(TQMultistageTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForAtomAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cellClick%@",indexPath);
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mTableView.bounds.size.width, 100)];
+    view.backgroundColor = [UIColor colorWithRed:187/255.0 green:206/255.0 blue:190/255.0 alpha:1];;
+    return view;
 }
 
-//header展开
-- (void)mTableView:(TQMultistageTableView *)tableView willOpenHeaderAtSection:(NSInteger)section
+#pragma mark -
+- (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
-    NSLog(@"headerOpen%d",section);
+    NSLog(@"Open Header ----%d",section);
 }
 
-//header关闭
-- (void)mTableView:(TQMultistageTableView *)tableView willCloseHeaderAtSection:(NSInteger)section
+- (void)mTableView:(TQMultistageTableView *)mTableView willCloseHeaderAtSection:(NSInteger)section
 {
-    NSLog(@"headerClose%d",section);
+    NSLog(@"Close Header ---%d",section);
 }
 
-- (void)mTableView:(TQMultistageTableView *)tableView willOpenCellAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark -
+- (void)mTableView:(TQMultistageTableView *)mTableView willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"OpenCell%@",indexPath);
+    NSLog(@"Open Row ----%d",indexPath.row);
 }
 
-- (void)mTableView:(TQMultistageTableView *)tableView willCloseCellAtIndexPath:(NSIndexPath *)indexPath;
+- (void)mTableView:(TQMultistageTableView *)mTableView willCloseRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"CloseCell%@",indexPath);
+    NSLog(@"Close Row ----%d",indexPath.row);
 }
+
 
 @end

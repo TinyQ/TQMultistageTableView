@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class TQViewController;
-
 @interface TQAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) TQViewController *viewController;
 
 @end
