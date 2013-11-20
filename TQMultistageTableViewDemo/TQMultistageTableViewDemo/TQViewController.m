@@ -107,10 +107,7 @@
     return header;
 }
 
-
-
-
-#pragma mark -
+#pragma mark - Header Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
@@ -122,7 +119,7 @@
     NSLog(@"Close Header ---%d",section);
 }
 
-#pragma mark -
+#pragma mark - Row Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
