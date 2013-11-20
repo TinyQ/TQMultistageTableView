@@ -18,16 +18,12 @@ TQMultistageTableView
 
 ## Usage
 
-```objective-c
-NSString *URLString = @"http://example.com";
-NSDictionary *parameters = @{@"foo": @"bar", @"baz": @[@1, @2, @3]};
-
 
 ####  About TinyQ
 
- email : <tinyqf@gmail.com>
+email : <tinyqf@gmail.com>
  
- blogs : <http://tinyq.me>
+blogs : <http://tinyq.me>
 
 
 
