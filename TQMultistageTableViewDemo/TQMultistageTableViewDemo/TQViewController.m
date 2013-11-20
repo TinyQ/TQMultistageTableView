@@ -7,6 +7,7 @@
 //
 
 #import "TQViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TQViewController ()
 
@@ -18,8 +19,21 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIColor *titleBgColor = [UIColor colorWithRed:179/255.0 green:143/255.0 blue:195/255.0 alpha:1];
     CGRect rect = [UIScreen mainScreen ].bounds;
     
+    if (!OSVersionIsAtLeastiOS7())
+    {
+        rect.size.height -= 20 + 44;
+        [self.navigationController.navigationBar setTintColor:titleBgColor];
+    }
+    else
+    {
+        [self.navigationController.navigationBar setBarTintColor:titleBgColor];
+    }
+
     self.mTableView = [[TQMultistageTableView alloc] initWithFrame:rect];
     self.mTableView.dataSource = self;
     self.mTableView.delegate   = self;
@@ -28,18 +42,9 @@
     [self.view addSubview:self.mTableView];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.mTableView.bounds.size.width, 100)];
-    view.backgroundColor = [UIColor colorWithRed:187/255.0 green:206/255.0 blue:190/255.0 alpha:1];;
+    view.backgroundColor = [UIColor colorWithRed:251/255.0 green:125/255.0 blue:91/255.0 alpha:1];
     
     self.mTableView.atomView = view;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    [button addTarget:self action:@selector(addbuttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-}
-
-- (void)addbuttonClick:(id)sender
-{
-    [self.mTableView sendCellTouchActionWithIndexPath:[NSIndexPath indexPathForRow:6 inSection:2]];
 }
 
 #pragma mark - TQTableViewDataSource
@@ -58,16 +63,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     UIView *view = [[UIView alloc] initWithFrame:cell.bounds] ;
+    view.layer.backgroundColor  = [UIColor colorWithRed:246/255.0 green:213/255.0 blue:105/255.0 alpha:1].CGColor;
+    view.layer.masksToBounds    = YES;
+    view.layer.borderWidth      = 0.5;
+    view.layer.borderColor      = [UIColor colorWithRed:250/255.0 green:77/255.0 blue:83/255.0 alpha:1].CGColor;
     
-    view.backgroundColor = [UIColor colorWithRed:128/255.0 green:156/255.0 blue:151/255.0 alpha:1];
     cell.backgroundView = view;
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(TQMultistageTableView *)mTableView
 {
-    return 10;
+    return 20;
 }
 
 #pragma mark - Table view delegate
@@ -77,31 +86,32 @@
     return 44;
 }
 
-- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
+- (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIView * control = [[UIView alloc] init];
-    control.backgroundColor = [UIColor whiteColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.text = [NSString stringWithFormat:@"%d",section];
-    label.textColor = [UIColor blackColor];
-    label.frame = CGRectMake(20, 0, 200, 40);
-    [control addSubview:label];
-    return control;
+    return 66;
 }
-#pragma mark -
+
 - (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForAtomAtIndexPath:(NSIndexPath *)indexPath
 {
     return 100;
 }
 
-- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForAtomAtIndexPath:(NSIndexPath *)indexPath
+- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mTableView.bounds.size.width, 100)];
-    view.backgroundColor = [UIColor colorWithRed:187/255.0 green:206/255.0 blue:190/255.0 alpha:1];;
-    return view;
+    UIView *header = [[UIView alloc] init];
+    
+    header.layer.backgroundColor    = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1].CGColor;
+    header.layer.masksToBounds      = YES;
+    header.layer.borderWidth        = 0.5;
+    header.layer.borderColor        = [UIColor colorWithRed:179/255.0 green:143/255.0 blue:195/255.0 alpha:1].CGColor;
+    return header;
 }
 
+
+
+
 #pragma mark -
+
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
     NSLog(@"Open Header ----%d",section);
@@ -113,6 +123,7 @@
 }
 
 #pragma mark -
+
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Open Row ----%d",indexPath.row);
@@ -122,6 +133,5 @@
 {
     NSLog(@"Close Row ----%d",indexPath.row);
 }
-
 
 @end

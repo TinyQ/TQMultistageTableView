@@ -27,9 +27,10 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         _atomOrigin = CGPointMake(0, 0);
         
         _tableView = [[UITableView alloc] initWithFrame:frame];
-        _tableView.delegate     = self;
-        _tableView.dataSource   = self;
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.delegate         = self;
+        _tableView.dataSource       = self;
+        _tableView.backgroundColor  = [UIColor clearColor];
+        _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
