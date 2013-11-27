@@ -8,16 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum
-{
-    //最外层
-	TQHeaderLineTouch,
-    //中间层
-	TQCellLineTouch,
-    //代码
-	TQCodeSendTouch,
-} TQLineTouchType;
-
 @protocol TQTableViewDataSource , TQTableViewDelegate;
 
 @interface TQMultistageTableView : UIView <UITableViewDelegate, UITableViewDataSource>
@@ -96,9 +86,6 @@ typedef enum
 @optional
 
 - (NSInteger)numberOfSectionsInTableView:(TQMultistageTableView *)mTableView;              // Default is 1 if not implemented
-
-- (NSString *)mTableView:(TQMultistageTableView *)mTableView titleForHeaderInSection:(NSInteger)section;
-- (NSString *)mTableView:(TQMultistageTableView *)mTableView titleForFooterInSection:(NSInteger)section;
 
 @end
 

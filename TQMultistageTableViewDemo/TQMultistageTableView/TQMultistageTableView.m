@@ -8,6 +8,16 @@
 
 #import "TQMultistageTableView.h"
 
+typedef enum
+{
+    //最外层
+	TQHeaderLineTouch,
+    //中间层
+	TQCellLineTouch,
+    //代码
+	TQCodeSendTouch,
+} TQLineTouchType;
+
 static const CGFloat kDefultHeightForRow    = 44.0f;
 static const CGFloat kDefultHeightForAtom   = 44.0f;
 

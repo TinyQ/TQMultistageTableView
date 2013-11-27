@@ -18,7 +18,7 @@ TQMultistageTableView
 
 ## Usage
 
-loading... 
+这个控件的使用与UITableView基本类似。
 
 
 ####  About TinyQ
