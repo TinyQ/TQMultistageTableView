@@ -138,7 +138,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
  */
 - (NSMutableArray *)buildInsertRowWithSection:(NSInteger)section
 {
-    int insert = [self invoke_numberOfRowsInSection:section];
+    NSInteger insert = [self invoke_numberOfRowsInSection:section];
     
     if (insert != 0)
     {
@@ -166,7 +166,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
  */
 - (NSMutableArray *)buildDeleteRowWithSection:(NSInteger)section
 {
-    int delete = [self invoke_numberOfRowsInSection:section];;
+    NSInteger delete = [self invoke_numberOfRowsInSection:section];;
     
     if (delete != 0)
     {
@@ -374,7 +374,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
  */
 - (void)tableViewHeaderTouchUpInside:(UITapGestureRecognizer *)gesture
 {
-    int section = gesture.view.tag;
+    NSInteger section = gesture.view.tag;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:-1 inSection:section];
     
