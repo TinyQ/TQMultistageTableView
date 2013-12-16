@@ -398,7 +398,12 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     CGPoint point = [gesture locationInView:cell];
     if(CGRectContainsPoint(rect,point))
     {
-        [self openOrCloseCellWithTouchType:TQCellLineTouch forIndexPath:indexPath];
+        if (self.atomView)
+        {
+            [self openOrCloseCellWithTouchType:TQCellLineTouch forIndexPath:indexPath];
+        }
+        
+        [self invoke_didSelectRowAtIndexPath:indexPath];
     }
 }
 
@@ -568,6 +573,13 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     }
 }
 
+- (void)invoke_didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: didSelectRowAtIndexPath:)])
+    {
+        [self.delegate mTableView:self didSelectRowAtIndexPath:indexPath];
+    }
+}
 
 #pragma mark - Invoke DataSource
 

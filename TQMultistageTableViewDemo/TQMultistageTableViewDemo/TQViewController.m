@@ -124,6 +124,11 @@
     return header;
 }
 
+- (void)mTableView:(TQMultistageTableView *)mTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didSelectRow ----%d",indexPath.row);
+}
+
 #pragma mark - Header Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
