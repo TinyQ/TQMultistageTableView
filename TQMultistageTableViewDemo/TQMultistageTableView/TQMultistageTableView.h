@@ -68,6 +68,11 @@
  */
 - (id)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
+- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
+
+- (id)dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)identifier;
+
+
 /**
  *  模拟列表Cell点击事件 -1 为关闭
  *

@@ -75,6 +75,18 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     return cell;
 }
 
+- (id)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath
+{
+    id cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (id)dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)identifier
+{
+    return [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+}
+
 - (void)sendHeaderTouchActionWithSection:(NSInteger)section
 {
     [self openOrCloseHeaderWithSection:section];
@@ -551,7 +563,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
 
 - (void)invoke_willCloseHeaderAtSection:(NSInteger)section
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: willOpenRowAtIndexPath:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: willCloseHeaderAtSection:)])
     {
         [self.delegate mTableView:self willCloseHeaderAtSection:section];
     }
