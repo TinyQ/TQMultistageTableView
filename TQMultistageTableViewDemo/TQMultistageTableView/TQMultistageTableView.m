@@ -248,6 +248,12 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
     }
     [self.tableView endUpdates];
+    if ([insertIndexPaths count] > 0)
+    {
+        //底部 section 展开时，子 cell 可以显示1个出来
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:newSection]
+                              atScrollPosition:UITableViewScrollPositionNone animated:YES];
+    }
 }
 
 #pragma mark - Private Operation For Row Open & Close
