@@ -150,8 +150,7 @@ static BOOL OSVersionIsAtLeastiOS7() {
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
     UITableViewHeaderFooterView *header = [mTableView headerViewForSection:section];
-    header.backgroundView.backgroundColor = [UIColor grayColor];
-    
+    header.backgroundView.backgroundColor = [UIColor lightGrayColor];
     NSLog(@"Open Header ----%ld",section);
 }
 
