@@ -117,14 +117,26 @@ static BOOL OSVersionIsAtLeastiOS7() {
     return 100;
 }
 
-- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
+- (UITableViewHeaderFooterView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *header = [[UIView alloc] init];
+    static NSString *HeaderIdentifier = @"header";
     
-    header.layer.backgroundColor    = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1].CGColor;
+    UITableViewHeaderFooterView *header = [mTableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+    if(!header) {
+        header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:HeaderIdentifier];
+        header.backgroundView = [[UIView alloc] init];   
+    }
+    
     header.layer.masksToBounds      = YES;
     header.layer.borderWidth        = 0.5;
     header.layer.borderColor        = [UIColor colorWithRed:179/255.0 green:143/255.0 blue:195/255.0 alpha:1].CGColor;
+    
+    if ([mTableView isOpenedSection:section]) {
+        header.backgroundView.backgroundColor = [UIColor lightGrayColor];
+    } else {
+        header.backgroundView.backgroundColor = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1];
+    }
+    
     return header;
 }
 
@@ -137,11 +149,16 @@ static BOOL OSVersionIsAtLeastiOS7() {
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
+    UITableViewHeaderFooterView *header = [mTableView headerViewForSection:section];
+    header.backgroundView.backgroundColor = [UIColor grayColor];
+    
     NSLog(@"Open Header ----%ld",section);
 }
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willCloseHeaderAtSection:(NSInteger)section
 {
+    UITableViewHeaderFooterView *header = [mTableView headerViewForSection:section];
+    header.backgroundView.backgroundColor = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1];
     NSLog(@"Close Header ---%ld",section);
 }
 

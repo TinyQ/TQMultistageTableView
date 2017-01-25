@@ -103,6 +103,25 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     [self.tableView reloadData];
 }
 
+- (UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section
+{
+    return [self.tableView headerViewForSection:section];
+}
+
+- (UITableViewHeaderFooterView *)footerViewForSection:(NSInteger)section
+{
+    return [self.tableView footerViewForSection:section];
+}
+
+- (BOOL)isOpenedSection:(NSInteger)section
+{
+    NSIndexPath *indexPath = self.openedIndexPath;
+    if (indexPath) {
+        return indexPath.section == section;
+    }
+    return NO;
+}
+
 #pragma mark - Private Methods
 
 /**
@@ -474,7 +493,8 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         view.frame = frame;
         view.tag = section;
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tableViewHeaderTouchUpInside:)];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(tableViewHeaderTouchUpInside:)];
         [view addGestureRecognizer:tapGesture];
     }
     
