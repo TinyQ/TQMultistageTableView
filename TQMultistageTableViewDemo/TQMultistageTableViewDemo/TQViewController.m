@@ -26,6 +26,10 @@
 #import "TQViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+static BOOL OSVersionIsAtLeastiOS7() {
+    return (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1);
+}
+
 @interface TQViewController ()
 
 @end
@@ -126,31 +130,31 @@
 
 - (void)mTableView:(TQMultistageTableView *)mTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didSelectRow ----%d",indexPath.row);
+    NSLog(@"didSelectRow ----%ld",indexPath.row);
 }
 
 #pragma mark - Header Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
-    NSLog(@"Open Header ----%d",section);
+    NSLog(@"Open Header ----%ld",section);
 }
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willCloseHeaderAtSection:(NSInteger)section
 {
-    NSLog(@"Close Header ---%d",section);
+    NSLog(@"Close Header ---%ld",section);
 }
 
 #pragma mark - Row Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Open Row ----%d",indexPath.row);
+    NSLog(@"Open Row ----%ld",indexPath.row);
 }
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willCloseRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Close Row ----%d",indexPath.row);
+    NSLog(@"Close Row ----%ld",indexPath.row);
 }
 
 @end
