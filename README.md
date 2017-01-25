@@ -1,7 +1,7 @@
 TQMultistageTableView
 =====================
 
-![Image text](http://github.com/TinyQ/TQMultistageTableView/raw/master/READMEIMAGE/icon.png)
+![Image text](READMEIMAGE/icon.png)
 
 ## Overview
 
@@ -13,8 +13,8 @@ TQMultistageTableView
 
 右边的 **gif** 图片是这个项目中的Demo。
 
-![Image text](http://github.com/TinyQ/TQMultistageTableView/raw/master/READMEIMAGE/TQTableView.gif)____
-![Image text](http://github.com/TinyQ/TQMultistageTableView/raw/master/READMEIMAGE/TQTableView2.gif) 
+![Image text](READMEIMAGE/TQTableView.gif)____
+![Image text](READMEIMAGE/TQTableView2.gif) 
 
 ## Usage
 
