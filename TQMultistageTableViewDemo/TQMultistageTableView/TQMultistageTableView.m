@@ -59,6 +59,11 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         _tableView.backgroundColor  = [UIColor clearColor];
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         
+        //fix iOS11 bug
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
         [self addSubview:_tableView];
