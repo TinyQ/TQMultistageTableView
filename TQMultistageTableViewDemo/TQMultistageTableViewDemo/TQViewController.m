@@ -26,6 +26,10 @@
 #import "TQViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+static BOOL OSVersionIsAtLeastiOS7() {
+    return (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1);
+}
+
 @interface TQViewController ()
 
 @end
@@ -113,44 +117,60 @@
     return 100;
 }
 
-- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
+- (UITableViewHeaderFooterView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *header = [[UIView alloc] init];
+    static NSString *HeaderIdentifier = @"header";
     
-    header.layer.backgroundColor    = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1].CGColor;
+    UITableViewHeaderFooterView *header = [mTableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier];
+    if(!header) {
+        header = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:HeaderIdentifier];
+        header.backgroundView = [[UIView alloc] init];   
+    }
+    
     header.layer.masksToBounds      = YES;
     header.layer.borderWidth        = 0.5;
     header.layer.borderColor        = [UIColor colorWithRed:179/255.0 green:143/255.0 blue:195/255.0 alpha:1].CGColor;
+    
+    if ([mTableView isOpenedSection:section]) {
+        header.backgroundView.backgroundColor = [UIColor lightGrayColor];
+    } else {
+        header.backgroundView.backgroundColor = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1];
+    }
+    
     return header;
 }
 
 - (void)mTableView:(TQMultistageTableView *)mTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didSelectRow ----%d",indexPath.row);
+    NSLog(@"didSelectRow ----%ld",indexPath.row);
 }
 
 #pragma mark - Header Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section
 {
-    NSLog(@"Open Header ----%d",section);
+    UITableViewHeaderFooterView *header = [mTableView headerViewForSection:section];
+    header.backgroundView.backgroundColor = [UIColor lightGrayColor];
+    NSLog(@"Open Header ----%ld",section);
 }
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willCloseHeaderAtSection:(NSInteger)section
 {
-    NSLog(@"Close Header ---%d",section);
+    UITableViewHeaderFooterView *header = [mTableView headerViewForSection:section];
+    header.backgroundView.backgroundColor = [UIColor colorWithRed:218/255.0 green:249/255.0 blue:255/255.0 alpha:1];
+    NSLog(@"Close Header ---%ld",section);
 }
 
 #pragma mark - Row Open Or Close
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Open Row ----%d",indexPath.row);
+    NSLog(@"Open Row ----%ld",indexPath.row);
 }
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willCloseRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Close Row ----%d",indexPath.row);
+    NSLog(@"Close Row ----%ld",indexPath.row);
 }
 
 @end

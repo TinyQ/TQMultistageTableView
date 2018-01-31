@@ -92,6 +92,14 @@
  */
 - (void)reloadData;
 
+- (UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section;
+- (UITableViewHeaderFooterView *)footerViewForSection:(NSInteger)section;
+
+/**
+ *  判断当前 section 是否是展开状态
+ */
+- (BOOL)isOpenedSection:(NSInteger)section;
+
 @end
 
 /**
@@ -123,7 +131,7 @@
 - (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (CGFloat)mTableView:(TQMultistageTableView *)mTableView heightForAtomAtIndexPath:(NSIndexPath *)indexPath;
 
-- (UIView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
+- (UITableViewHeaderFooterView *)mTableView:(TQMultistageTableView *)mTableView viewForHeaderInSection:(NSInteger)section;
 
 - (void)mTableView:(TQMultistageTableView *)mTableView willOpenHeaderAtSection:(NSInteger)section;
 - (void)mTableView:(TQMultistageTableView *)mTableView willCloseHeaderAtSection:(NSInteger)section;

@@ -59,6 +59,11 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         _tableView.backgroundColor  = [UIColor clearColor];
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         
+        //fix iOS11 bug
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
         [self addSubview:_tableView];
@@ -101,6 +106,25 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
 {
     _openedIndexPath = [NSIndexPath indexPathForRow:-1 inSection:-1];
     [self.tableView reloadData];
+}
+
+- (UITableViewHeaderFooterView *)headerViewForSection:(NSInteger)section
+{
+    return [self.tableView headerViewForSection:section];
+}
+
+- (UITableViewHeaderFooterView *)footerViewForSection:(NSInteger)section
+{
+    return [self.tableView footerViewForSection:section];
+}
+
+- (BOOL)isOpenedSection:(NSInteger)section
+{
+    NSIndexPath *indexPath = self.openedIndexPath;
+    if (indexPath) {
+        return indexPath.section == section;
+    }
+    return NO;
 }
 
 #pragma mark - Private Methods
@@ -474,7 +498,8 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         view.frame = frame;
         view.tag = section;
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tableViewHeaderTouchUpInside:)];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                     action:@selector(tableViewHeaderTouchUpInside:)];
         [view addGestureRecognizer:tapGesture];
     }
     
