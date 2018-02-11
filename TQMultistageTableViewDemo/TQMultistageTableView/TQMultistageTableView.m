@@ -551,6 +551,9 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     {
         h = [self.delegate mTableView:self heightForHeaderInSection:section];
     }
+    
+    self.tableView.estimatedSectionHeaderHeight = h + 0.01;
+
     return h;
 }
 
@@ -561,6 +564,9 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     {
         h = [self.delegate mTableView:self heightForRowAtIndexPath:indexPath];
     }
+    
+    self.tableView.estimatedRowHeight = h + 0.01;
+    
     return h;
 }
 
