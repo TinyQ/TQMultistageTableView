@@ -296,7 +296,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
  */
 - (NSMutableArray *)buildWillOpenRowsWithRow:(NSInteger)row
 {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:self.openedIndexPath.section];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:MAX(self.openedIndexPath.section, 0)];
     
     [self invoke_willOpenRowAtIndexPath:indexPath];
     
@@ -617,7 +617,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
 
 - (void)invoke_willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: willOpenHeaderAtSection:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: willOpenRowAtIndexPath:)])
     {
         [self.delegate mTableView:self willOpenRowAtIndexPath:indexPath];
     }
