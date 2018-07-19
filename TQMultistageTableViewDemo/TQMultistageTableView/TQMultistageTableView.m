@@ -25,6 +25,9 @@
 
 #import "TQMultistageTableView.h"
 
+#define IOS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define iOS11_OR_LATER       IOS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"11.0")
+
 typedef enum
 {
     //最外层
@@ -59,10 +62,12 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
         _tableView.backgroundColor  = [UIColor clearColor];
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         
-        //fix iOS11 bug
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionFooterHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
+        if (iOS11_OR_LATER) {
+            //fix iOS11 bug
+            _tableView.estimatedRowHeight = 0;
+            _tableView.estimatedSectionFooterHeight = 0;
+            _tableView.estimatedSectionHeaderHeight = 0;
+        }
         
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         
@@ -291,7 +296,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
  */
 - (NSMutableArray *)buildWillOpenRowsWithRow:(NSInteger)row
 {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:self.openedIndexPath.section];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:MAX(self.openedIndexPath.section, 0)];
     
     [self invoke_willOpenRowAtIndexPath:indexPath];
     
@@ -551,6 +556,11 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     {
         h = [self.delegate mTableView:self heightForHeaderInSection:section];
     }
+    
+    if (iOS11_OR_LATER) {
+        self.tableView.estimatedSectionHeaderHeight = h + 0.01;
+    }
+
     return h;
 }
 
@@ -561,6 +571,11 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
     {
         h = [self.delegate mTableView:self heightForRowAtIndexPath:indexPath];
     }
+    
+    if (iOS11_OR_LATER) {
+        self.tableView.estimatedRowHeight = h + 0.01;
+    }
+    
     return h;
 }
 
@@ -602,7 +617,7 @@ static const CGFloat kDefultHeightForAtom   = 44.0f;
 
 - (void)invoke_willOpenRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: willOpenHeaderAtSection:)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mTableView: willOpenRowAtIndexPath:)])
     {
         [self.delegate mTableView:self willOpenRowAtIndexPath:indexPath];
     }
